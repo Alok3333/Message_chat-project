@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './Components/Header/Hedaer.jsx';
+import TopNotification from './Components/Notifications/Top_Notification';
+// import LinksExample from './Components/link';
+// import  CardGroup  from '../src/Components/Cards/card';
+import Login from '../src/pages/login/Login';
+import UserList from './pages/userList/UserList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="main">
+        <Header/>
+        <TopNotification/>
+        <div className="container">
+          <UserList/>
+        </div>
+        
+
+      </div>
+        {/* <LinksExample/> */}
+        {/* <CardGroup/> */}
+        <Login/>
+        <button className='btn btn-danger'>what is memo in react ?</button>
+      
+    </>
   );
 }
 

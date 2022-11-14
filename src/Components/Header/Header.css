@@ -1,0 +1,12 @@
+header {
+    text-align: center;
+    background-color: rgba(3, 3, 143);
+    color: #bbb;
+    padding: 12px;
+}
+
+header h2 {
+    text-decoration: underline;
+    text-decoration-color: hotpink;
+    text-decoration-style: wavy;
+}
