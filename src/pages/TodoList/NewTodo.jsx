@@ -1,13 +1,54 @@
-import React from "react";
-import "./NewTodo.css";
+import React, { useState } from 'react';
+import './NewTodo.css';
 
-function NewTodo() {
+function NewTodo(props) {
+  console.log(props);
+  const newTodoHandler = props.onNewToDo;
+  const [todoVal, setTodoVal] = useState('');
+  const [todoError, setTodoError] = useState(false);
+
+  const todoChangeHandler = (event) => {
+    // console.log('todoChangeHandler');
+    // console.log(event);
+    const inputVal = event.target.value.trim();
+    if (inputVal.length <= 3) {
+      setTodoError(true);
+    } else {
+      setTodoError(false);
+    }
+
+    setTodoVal(inputVal);
+  };
+
+  const formSubmitHandlerChange = (event) => {
+    event.preventDefault();
+    if (todoError) {
+      alert("Don't type less then three character");
+    } else {
+      alert('Form Submitted!');
+      const newTodo = {
+        id: Date.now(),
+        title: todoVal,
+        completed: false,
+      };
+      newTodoHandler(newTodo);
+      setTodoVal('');     // After submit the Form clear input filed
+    }
+  };
+
   return (
-    <form className="todo-from">
+    <form className="todo-from" onSubmit={formSubmitHandlerChange}>
       <div className="form-group">
-        <input type="text" className="form-control" />
+        <input
+          type="text"
+          className={`"form-control" ${todoError ? 'error' : ''}`}
+          name="todo"
+          value={todoVal}
+          onChange={todoChangeHandler}
+          placeholder="Add New TodoItem "
+        />
       </div>
-      <button type="submit">Create Task</button>
+      <button type="submit">Add Todo</button>
     </form>
   );
 }

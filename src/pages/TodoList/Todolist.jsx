@@ -31,7 +31,7 @@ const todoListInit = [
 
 function Todolist() {
   const [todoList, setTodoList] = useState(todoListInit);
-  const [showNewForm, setShowNewForm] = useState(false);
+  const [showNewForm, setShowNewForm] = useState(true);
 
   const todoItemChangeStatusHandler = (todo) => {
     const updatedTodo = { ...todo, completed: !todo.completed };
@@ -44,6 +44,12 @@ function Todolist() {
     setShowNewForm(!showNewForm);
   };
 
+  const addNewTodoHandler = (newTodo) => {
+    setTodoList((prevTodoList) => {
+      return [...prevTodoList, newTodo];
+    });
+  };
+
   return (
     <>
       <h2>
@@ -52,7 +58,7 @@ function Todolist() {
           {showNewForm ? 'Close Form' : 'Add New'}
         </button>
       </h2>
-      {showNewForm && <NewTodo />}
+      {showNewForm && <NewTodo onNewToDo={addNewTodoHandler}/>}
 
       <ul className="todo-list">
         {todoList.map((todo) => {
