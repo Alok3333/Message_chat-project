@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Input from '../../Components/InputReuseable/Input';
 import './login.css';
 
 const Login = () => {
@@ -20,7 +21,7 @@ const Login = () => {
     setUsernameErr(inputVal.trim().length <= 3);
   };
 
-  const passwordNameHandler = (event) => {
+  const passwordHandler = (event) => {
     const inputVal = event.target.value;
     setPassword(inputVal);
     setpasswordErr(inputVal.trim().length <= 5);
@@ -35,26 +36,28 @@ const Login = () => {
     <div className="form-box">
       <form onSubmit={loginFormHandler}>
         <h2>Login Form</h2>
-        <div className={`form-group ${usernameErr ? 'error-filed-form' : ''}`}>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={userNameHandler}
-            placeholder="Username"
-            autoComplete="false"
-          />
-        </div>
-        <div className={`form-group ${passwordErr ? 'error-filed-form' : ''}`}>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={passwordNameHandler}
-            placeholder="Password"
-            autoComplete="false"
-          />
-        </div>
+        <Input
+          onChange={userNameHandler}
+          className={`${usernameErr ? "error-field" : ""}`}
+          field={{
+            type: "text",
+            name: "username",
+            value: username,
+            placeholder: "Username",
+            autoComplete: "false",
+          }}
+        />
+        <Input
+          onChange={passwordHandler}
+          className={`${passwordErr ? "error-field" : ""}`}
+          field={{
+            type: "password",
+            name: "password",
+            value: password,
+            placeholder: "Password",
+            autoComplete: "false",
+          }}
+        />
         <div className="submitBtn">
           <button
             type="submit"

@@ -1,0 +1,10 @@
+form h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: lighter;
+}
+
+.form-group.error-field input {
+    color: red;
+    border: 2px solid red;
+}
