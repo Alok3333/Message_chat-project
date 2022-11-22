@@ -2,24 +2,40 @@ import { useState } from 'react';
 import './login.css';
 
 const Login = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [usernameErr, setUsernameErr] = useState(false);
+  const [passwordErr, setpasswordErr] = useState(false);
 
-    const userNameHandler = (event) => {
-        // console.log(event.target.value);
-        setUsername(event.target.value)
-    }
+  const userNameHandler = (event) => {
+    const inputVal = event.target.value;
+    // if(inputVal.trim().length <= 3){
+    //     setUsernameErr(true)
+    // }
+    // else
+    // {
+    //     setUsernameErr(false)
+    // }
+    setUsername(inputVal);
+    setUsernameErr(inputVal.trim().length <= 3);
+  };
 
-    const passwordNameHandler = (event) => {
-        // console.log(event.target.value);
-        setPassword(event.target.value)
-    }
-    
+  const passwordNameHandler = (event) => {
+    const inputVal = event.target.value;
+    setPassword(inputVal);
+    setpasswordErr(inputVal.trim().length <= 5);
+  };
+
+  const loginFormHandler = (e) => {
+    e.preventDefault();
+    console.log('Form value', {username}, {password});
+  }
+
   return (
     <div className="form-box">
-      <form>
+      <form onSubmit={loginFormHandler}>
         <h2>Login Form</h2>
-        <div className="form-group">
+        <div className={`form-group ${usernameErr ? 'error-filed-form' : ''}`}>
           <input
             type="text"
             name="username"
@@ -29,7 +45,7 @@ const Login = () => {
             autoComplete="false"
           />
         </div>
-        <div className="form-group">
+        <div className={`form-group ${passwordErr ? 'error-filed-form' : ''}`}>
           <input
             type="password"
             name="password"
@@ -40,7 +56,17 @@ const Login = () => {
           />
         </div>
         <div className="submitBtn">
-          <button type="submit">Sign In</button>
+          <button
+            type="submit"
+            disabled={
+              usernameErr ||
+              passwordErr ||
+              username.length === 0 ||
+              password.length === 0
+            }
+          >
+            Sign In
+          </button>
         </div>
       </form>
     </div>

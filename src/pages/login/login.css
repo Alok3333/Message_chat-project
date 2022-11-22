@@ -55,3 +55,8 @@ form h2 {
     margin-bottom: 24px;
     font-weight: lighter;
 }
+
+.form-group.error-filed-form input {
+    color: red;
+    border: 2px solid red;
+}
