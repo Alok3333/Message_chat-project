@@ -1,13 +1,13 @@
-import React from "react";
-import "../InputReuseable/Input.css";
+import React from 'react';
+import '../InputReuseable/Input.css';
 
 const Input = (props) => {
   const field = props.field;
-  console.log(props);
+  //   console.log(props);
   return (
     <>
       <div className={`form-group ${props.className}`}>
-        <input {...field}  className="form-control" onChange={props.onChange}/>
+        <input {...field} className="form-control" onChange={props.onChange} />
       </div>
     </>
   );
